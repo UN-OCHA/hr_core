@@ -13,6 +13,13 @@ function hr_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'admin_theme';
+  $strongarm->value = 'seven';
+  $export['admin_theme'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_entity_types';
   $strongarm->value = array(
     'node' => 'node',
@@ -21,6 +28,13 @@ function hr_core_strongarm() {
     'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'features_default_export_path';
+  $strongarm->value = 'sites/all/modules/hr';
+  $export['features_default_export_path'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -83,6 +97,43 @@ function hr_core_strongarm() {
     ),
   );
   $export['language_negotiation_language_url'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'og_menu_create_by_default';
+  $strongarm->value = 1;
+  $export['og_menu_create_by_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'panels_page_allowed_layouts';
+  $strongarm->value = 'O:22:"panels_allowed_layouts":4:{s:9:"allow_new";b:1;s:11:"module_name";s:11:"panels_page";s:23:"allowed_layout_settings";a:9:{s:8:"flexible";b:0;s:6:"onecol";b:0;s:17:"threecol_33_34_33";b:0;s:14:"twocol_stacked";b:1;s:17:"threecol_25_50_25";b:0;s:25:"threecol_25_50_25_stacked";b:0;s:25:"threecol_33_34_33_stacked";b:0;s:6:"twocol";b:0;s:13:"twocol_bricks";b:0;}s:10:"form_state";N;}';
+  $export['panels_page_allowed_layouts'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'panels_page_default';
+  $strongarm->value = array(
+    'block' => 'block',
+    'entity_form_field' => 'entity_form_field',
+    'custom' => 'custom',
+    'entity_field_extra' => 'entity_field_extra',
+    'entity_field' => 'entity_field',
+    'token' => 'token',
+    'entity_view' => 'entity_view',
+    'other' => 'other',
+  );
+  $export['panels_page_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'theme_default';
+  $strongarm->value = 'humanitarianresponse';
+  $export['theme_default'] = $strongarm;
 
   return $export;
 }
