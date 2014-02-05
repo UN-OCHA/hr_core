@@ -259,7 +259,11 @@ function hr_core_field_default_field_bases() {
         'sort' => array(
           'type' => 'none',
         ),
-        'target_bundles' => array(),
+        'target_bundles' => array(
+          'hr_operation' => 'hr_operation',
+          'hr_sector' => 'hr_sector',
+          'hr_space' => 'hr_space',
+        ),
       ),
       'handler_submit' => 'Change handler',
       'target_type' => 'node',
