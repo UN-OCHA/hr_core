@@ -95,9 +95,67 @@ function hr_core_field_default_field_bases() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'max_length' => 255,
+      'profile2_private' => FALSE,
     ),
     'translatable' => 1,
     'type' => 'text',
+  );
+
+  // Exported field_base: 'field_address'
+  $field_bases['field_address'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_address',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'addressfield',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'addressfield',
+  );
+
+  // Exported field_base: 'field_email'
+  $field_bases['field_email'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_email',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'email',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'email',
+  );
+
+  // Exported field_base: 'field_emails'
+  $field_bases['field_emails'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_emails',
+    'foreign keys' => array(),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'email',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'email',
   );
 
   // Exported field_base: 'field_image'
@@ -133,6 +191,39 @@ function hr_core_field_default_field_bases() {
     'type' => 'image',
   );
 
+  // Exported field_base: 'field_phones'
+  $field_bases['field_phones'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_phones',
+    'foreign keys' => array(),
+    'indexes' => array(
+      'countrycode' => array(
+        0 => 'countrycode',
+      ),
+      'numbertype' => array(
+        0 => 'numbertype',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'phone',
+    'settings' => array(
+      'enable_numbertype' => 1,
+      'entity_translation_sync' => FALSE,
+      'numbertype_allowed_values' => array(
+        'cell' => 'cell',
+        'fax' => 'fax',
+        'home' => 'home',
+        'work' => 'work',
+      ),
+      'profile2_private' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'phone',
+  );
+
   // Exported field_base: 'field_website'
   $field_bases['field_website'] = array(
     'active' => 1,
@@ -155,6 +246,7 @@ function hr_core_field_default_field_bases() {
       ),
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
+      'profile2_private' => FALSE,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',
@@ -266,6 +358,7 @@ function hr_core_field_default_field_bases() {
         ),
       ),
       'handler_submit' => 'Change handler',
+      'profile2_private' => FALSE,
       'target_type' => 'node',
     ),
     'target_type' => 'node',
