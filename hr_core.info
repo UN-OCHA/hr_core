@@ -63,4 +63,5 @@ features[variable][] = panels_page_allowed_layouts
 features[variable][] = panels_page_default
 features[variable][] = site_default_country
 features[variable][] = theme_default
+features[variable][] = user_default_timezone
 project path = sites/all/modules/hr
