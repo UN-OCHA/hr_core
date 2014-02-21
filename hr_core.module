@@ -6,4 +6,13 @@
 
 include_once 'hr_core.features.inc';
 
+/**
+ * Implements hook_entity_info_alter()
+ */
+function hr_core_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['search_result'] = array(
+    'label' => t('Search result'),
+    'custom settings' => TRUE,
+  );
+}
 
