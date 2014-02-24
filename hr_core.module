@@ -16,3 +16,28 @@ function hr_core_entity_info_alter(&$entity_info) {
   );
 }
 
+/**
+ * Implements hook_form_alter()
+ * Hides fields if they are empty
+ */
+function hr_core_form_alter(&$form, &$form_state, $form_id) {
+  foreach ($form as $id => &$item) {
+    if (is_array($item) && isset($item['#type']) && $item['#type'] == 'container') {
+      switch($item['#type']) {
+        case 'container':
+          $language = $item['#language'];
+          if (isset($item[$language]['#type']) && $item[$language]['#type'] == 'select') {
+            if (empty(array_diff($item[$language]['#options'], array('_none' => '- None -')))) {
+              $item['#type'] = 'hidden';
+            }
+          }
+          break;
+        case 'select':
+          if (empty($item['#options'])) {
+            $item['#type'] = 'hidden';
+          }
+          break;
+      }
+    }
+  }
+}
