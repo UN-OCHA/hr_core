@@ -63,3 +63,19 @@ function hr_core_pathauto_alias_alter(&$alias, array &$context) {
   $context['language'] = LANGUAGE_NONE;
 }
 
+/**
+ * Implements hook_path_insert()
+ */
+function hr_core_path_insert($path) {
+  if ($path['language'] != LANGUAGE_NONE) {
+    $initial_path = path_load(array('source' => $path['source'], 'language' => LANGUAGE_NONE));
+    if (!empty($initial_path)) {
+      path_delete($path['pid']);
+    }
+    else {
+      $path['language'] = LANGUAGE_NONE;
+      // Resave path
+      path_save($path);
+    }
+  }
+}
