@@ -14,6 +14,14 @@ function hr_core_entity_info_alter(&$entity_info) {
     'label' => t('Search result'),
     'custom settings' => TRUE,
   );
+  $entity_info['fieldable_panels_pane']['view modes']['teaser'] = array(
+    'label' => t('Teaser'),
+    'custom settings' => TRUE,
+  );
+  $entity_info['fieldable_panels_pane']['view modes']['link'] = array(
+    'label' => t('Link'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**
