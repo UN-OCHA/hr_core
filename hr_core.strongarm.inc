@@ -45,6 +45,7 @@ function hr_core_strongarm() {
   $strongarm->value = array(
     'node' => 'node',
     'taxonomy_term' => 'taxonomy_term',
+    'fieldable_panels_pane' => 'fieldable_panels_pane',
     'file' => 0,
     'user' => 0,
   );
