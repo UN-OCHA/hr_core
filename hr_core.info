@@ -60,6 +60,7 @@ features[variable][] = date_first_day
 features[variable][] = empty_timezone_message
 features[variable][] = entity_translation_entity_types
 features[variable][] = features_default_export_path
+features[variable][] = file_private_path
 features[variable][] = image_toolkit
 features[variable][] = imagemagick_convert
 features[variable][] = jquery_update_jquery_version
