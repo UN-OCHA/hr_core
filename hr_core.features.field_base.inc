@@ -346,7 +346,7 @@ function hr_core_field_default_field_bases() {
       ),
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
-      'profile2_private' => FALSE,
+      'profile2_private' => 0,
       'title' => 'optional',
       'title_maxlength' => 128,
       'title_value' => '',

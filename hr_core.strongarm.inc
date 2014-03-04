@@ -82,6 +82,28 @@ function hr_core_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'filter_allowed_protocols';
+  $strongarm->value = array(
+    0 => 'ftp',
+    1 => 'http',
+    2 => 'https',
+    3 => 'irc',
+    4 => 'mailto',
+    5 => 'news',
+    6 => 'nntp',
+    7 => 'rtsp',
+    8 => 'sftp',
+    9 => 'ssh',
+    10 => 'tel',
+    11 => 'telnet',
+    12 => 'webcal',
+    13 => 'skype',
+  );
+  $export['filter_allowed_protocols'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'imagemagick_convert';
   $strongarm->value = 'convert';
   $export['imagemagick_convert'] = $strongarm;
