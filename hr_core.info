@@ -47,6 +47,7 @@ features[field_base][] = field_phones
 features[field_base][] = field_related_content
 features[field_base][] = field_social_media
 features[field_base][] = field_website
+features[field_base][] = group_access
 features[field_base][] = group_group
 features[field_base][] = name_field
 features[field_base][] = og_group_ref
