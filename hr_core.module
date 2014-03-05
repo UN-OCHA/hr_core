@@ -55,11 +55,6 @@ function hr_core_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_pathauto_alias_alter()
  */
 function hr_core_pathauto_alias_alter(&$alias, array &$context) {
-  $path = _pathauto_existing_alias_data($context['source'], LANGUAGE_NONE);
-  if (!empty($path)) {
-    // Get initial alias created no matter what
-    $alias = $path['alias'];
-  }
   // Force all aliases to be saved as language neutral.
   $context['language'] = LANGUAGE_NONE;
 }
