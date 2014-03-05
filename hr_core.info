@@ -57,6 +57,7 @@ features[field_base][] = og_roles_permissions
 features[field_base][] = title_field
 features[language][] = es
 features[language][] = fr
+features[user_permission][] = save draft
 features[user_permission][] = use panels in place editing
 features[user_permission][] = view own unpublished content
 features[user_role][] = administrator

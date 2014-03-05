@@ -10,6 +10,16 @@
 function hr_core_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'save draft'.
+  $permissions['save draft'] = array(
+    'name' => 'save draft',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'save_draft',
+  );
+
   // Exported permission: 'use panels in place editing'.
   $permissions['use panels in place editing'] = array(
     'name' => 'use panels in place editing',
