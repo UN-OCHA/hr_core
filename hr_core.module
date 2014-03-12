@@ -77,6 +77,17 @@ function hr_core_path_insert($path) {
 }
 
 /**
+ * Implements hook_entity_presave()
+ *
+ * Makes sure pathauto is not used when no path is set
+ */
+function hr_core_entity_presave($node, $type) {
+  if (!isset($node->path['pathauto'])) {
+    $node->path['pathauto'] = FALSE;
+  }
+}
+
+/**
  * Implements hook_field_extra_fields()
  */
 function hr_core_field_extra_fields() {
