@@ -22,6 +22,10 @@ function hr_core_entity_info_alter(&$entity_info) {
     'label' => t('Link'),
     'custom settings' => TRUE,
   );
+  $entity_info['user']['view modes']['teaser'] = array(
+    'label' => t('Teaser'),
+    'custom settings' => TRUE,
+  );
 }
 
 /**
