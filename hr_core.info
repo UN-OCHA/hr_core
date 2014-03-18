@@ -25,6 +25,7 @@ dependencies[] = panelizer
 dependencies[] = panels
 dependencies[] = panels_ipe
 dependencies[] = pathauto
+dependencies[] = path_alias_xt
 dependencies[] = phone
 dependencies[] = redirect
 dependencies[] = role_export
