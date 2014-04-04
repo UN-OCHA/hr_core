@@ -152,7 +152,7 @@ function hr_core_field_default_field_bases() {
     'module' => 'email',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'profile2_private' => FALSE,
+      'profile2_private' => 0,
     ),
     'translatable' => 0,
     'type' => 'email',
