@@ -29,6 +29,7 @@ dependencies[] = panels_ipe
 dependencies[] = path_alias_xt
 dependencies[] = pathauto
 dependencies[] = phone
+dependencies[] = radix_layouts
 dependencies[] = redirect
 dependencies[] = role_export
 dependencies[] = save_draft
