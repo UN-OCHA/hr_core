@@ -10,6 +10,24 @@
 function hr_core_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'administer panels styles'.
+  $permissions['administer panels styles'] = array(
+    'name' => 'administer panels styles',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'panels',
+  );
+
+  // Exported permission: 'change layouts in place editing'.
+  $permissions['change layouts in place editing'] = array(
+    'name' => 'change layouts in place editing',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'panels',
+  );
+
   // Exported permission: 'create files'.
   $permissions['create files'] = array(
     'name' => 'create files',
