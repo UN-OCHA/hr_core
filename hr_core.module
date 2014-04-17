@@ -122,4 +122,30 @@ function hr_core_node_view($node, $view_mode, $langcode) {
   );
 }
 
+/**
+ * Implements hook_og_context_negotiation_info().
+ */
+function hr_core_og_context_negotiation_info() {
+  $providers = array();
+
+  $providers['hr_core'] = array(
+    'name' => t('HR Core'),
+    'description' => t('Sets group context within space'),
+    'callback' => 'hr_core_og_context_handler',
+    'menu path' => array('node/%', 'group/%/%/admin'),
+  );
+  return $providers;
+}
+
+function hr_core_og_context_handler($node = NULL) {
+  $context = NULL;
+  if ($node == NULL) {
+    $nid = arg(1);
+    $node = node_load($nid);
+    if ($node) {
+      $context = og_context_handler_node($node);
+    }
+  }
+  return $context;
+}
 
