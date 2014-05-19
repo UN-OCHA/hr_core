@@ -149,3 +149,34 @@ function hr_core_og_context_handler($node = NULL) {
   return $context;
 }
 
+/**
+ * Implements hook_token_info()
+ */
+function hr_core_token_info() {
+  $info['site']['og_context_current_group'] = array(
+    'name' => t('Current group'),
+    'description' => t('Current group from OG context'),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_tokens()
+ */
+function hr_core_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  if ($type == 'site') {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'og_context_current_group':
+          $group = og_context();
+          if (isset($group['gid'])) {
+            $node = node_load($group['gid']);
+            $replacements[$original] = $node->title;
+          }
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
