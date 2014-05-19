@@ -164,6 +164,7 @@ function hr_core_token_info() {
  * Implements hook_tokens()
  */
 function hr_core_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
   if ($type == 'site') {
     foreach ($tokens as $name => $original) {
       switch ($name) {
