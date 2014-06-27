@@ -181,3 +181,95 @@ function hr_core_tokens($type, $tokens, array $data = array(), array $options = 
   return $replacements;
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alter the node edit forms.
+ */
+function hr_core_form_node_form_alter(&$form, &$form_state) {
+  $node = $form['#node'];
+  if (publishcontent_publish_access($node)) {
+    if (!isset($node->nid)) {
+      array_unshift($form['#validate'], 'hr_core_save_draft_validate');
+      $form['actions']['submit']['#value'] = t('Publish');
+      $form['actions']['draft'] = array (
+        '#type' => 'submit',
+        '#access' => true,
+        '#value' => t('Save As Draft'),
+        '#weight' => 6,
+        '#submit' => 
+          array (
+            0 => 'node_form_submit',
+          ),
+      );
+    }
+  }
+  else {
+    if (!isset($node->nid)) {
+      $form['actions']['submit']['#value'] = t('Save As Draft');
+    }
+  }
+}
+
+/**
+ * Handles save draft form validation
+ */
+function hr_core_save_draft_validate($form, &$form_state) {
+  // Set the node to be published or unpublished depending on which button was
+  // clicked.
+  if ($form_state['triggering_element']['#value'] == t('Save As Draft')) {
+    $form_state['values']['status'] = 0;
+  }
+  elseif ($form_state['triggering_element']['#value'] == t('Publish')) {
+    $form_state['values']['status'] = 1;
+  }
+}
+
+/**
+ * Implements hook_publishcontent_publish_access().
+ *
+ */
+function hr_core_publishcontent_publish_access($node, $account) {
+  $access = FALSE;
+  if (!isset($node->nid) && isset($_GET[OG_AUDIENCE_FIELD])) {
+    $entity_type = 'node';
+    $entity_id = $_GET[OG_AUDIENCE_FIELD];
+    $access = og_user_access($entity_type, $entity_id, 'administer nodes', $account)
+        || og_user_access($entity_type, $entity_id, 'publish any content', $account)
+        || (og_user_access($entity_type, $entity_id, 'publish own content', $account) && $account->uid == $node->uid)
+        || (og_user_access($entity_type, $entity_id, 'publish editable content', $account) && node_access('update', $node))
+        || (og_user_access($entity_type, $entity_id, 'publish own ' . check_plain($node->type) . ' content', $account) && $account->uid == $node->uid)
+        || og_user_access($entity_type, $entity_id, 'publish any ' . check_plain($node->type) . ' content', $account)
+        || (og_user_access($entity_type, $entity_id, 'publish editable ' . check_plain($node->type) . ' content', $account) && node_access('update', $node))
+        ;
+    return $access ? PUBLISHCONTENT_ACCESS_ALLOW : PUBLISHCONTENT_ACCESS_IGNORE;
+  }
+  else {
+    return PUBLISHCONTENT_ACCESS_IGNORE;
+  }
+}
+
+/**
+ * Implements hook_publishcontent_unpublish_access().
+ *
+ */
+function hr_core_publishcontent_unpublish_access($node, $account) {
+  $access = FALSE;
+  if (!isset($node->nid) && isset($_GET[OG_AUDIENCE_FIELD])) {
+    $entity_type = 'node';
+    $entity_id = $_GET[OG_AUDIENCE_FIELD];
+    $access = og_user_access($entity_type, $entity_id, 'administer nodes', $account)
+        || og_user_access($entity_type, $entity_id, 'unpublish any content', $account)
+        || (og_user_access($entity_type, $entity_id, 'unpublish own content', $account) && $account->uid == $node->uid)
+        || (og_user_access($entity_type, $entity_id, 'unpublish editable content', $account) && node_access('update', $node))
+        || (og_user_access($entity_type, $entity_id, 'unpublish own ' . check_plain($node->type) . ' content', $account) && $account->uid == $node->uid)
+        || og_user_access($entity_type, $entity_id, 'unpublish any ' . check_plain($node->type) . ' content', $account)
+        || (og_user_access($entity_type, $entity_id, 'unpublish editable ' . check_plain($node->type) . ' content', $account) && node_access('update', $node))
+        ;
+    return $access ? PUBLISHCONTENT_ACCESS_ALLOW : PUBLISHCONTENT_ACCESS_IGNORE;
+  }
+  else {
+    return PUBLISHCONTENT_ACCESS_IGNORE;
+  }
+}
+
