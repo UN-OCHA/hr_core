@@ -203,8 +203,8 @@ function _hr_core_draft_button($label) {
  */
 function hr_core_form_node_form_alter(&$form, &$form_state) {
   $node = $form['#node'];
-  if (isset($_GET['OG_AUDIENCE_FIELD'])) {
-    $node->HR_CORE_OG_AUDIENCE_FIELD = $_GET['OG_AUDIENCE_FIELD'];
+  if (isset($_GET[OG_AUDIENCE_FIELD])) {
+    $node->{HR_CORE_OG_AUDIENCE_FIELD} = $_GET[OG_AUDIENCE_FIELD];
   }
   array_unshift($form['#validate'], 'hr_core_save_draft_validate');
   if (!variable_get('publishcontent_' . $node->type, FALSE)) {
@@ -258,9 +258,9 @@ function hr_core_save_draft_validate($form, &$form_state) {
  */
 function hr_core_publishcontent_publish_access($node, $account) {
   $access = FALSE;
-  if (!isset($node->nid) && isset($node->HR_CORE_OG_AUDIENCE_FIELD)) {
+  if (!isset($node->nid) && isset($node->{HR_CORE_OG_AUDIENCE_FIELD})) {
     $entity_type = 'node';
-    $entity_id = $node->HR_CORE_OG_AUDIENCE_FIELD;
+    $entity_id = $node->{HR_CORE_OG_AUDIENCE_FIELD};
     $access = og_user_access($entity_type, $entity_id, 'administer nodes', $account)
         || og_user_access($entity_type, $entity_id, 'publish any content', $account)
         || (og_user_access($entity_type, $entity_id, 'publish own content', $account) && $account->uid == $node->uid)
@@ -282,9 +282,9 @@ function hr_core_publishcontent_publish_access($node, $account) {
  */
 function hr_core_publishcontent_unpublish_access($node, $account) {
   $access = FALSE;
-  if (!isset($node->nid) && isset($node->HR_CORE_OG_AUDIENCE_FIELD)) {
+  if (!isset($node->nid) && isset($node->{HR_CORE_OG_AUDIENCE_FIELD})) {
     $entity_type = 'node';
-    $entity_id = $node->HR_CORE_OG_AUDIENCE_FIELD;
+    $entity_id = $node->{HR_CORE_OG_AUDIENCE_FIELD};
     $access = og_user_access($entity_type, $entity_id, 'administer nodes', $account)
         || og_user_access($entity_type, $entity_id, 'unpublish any content', $account)
         || (og_user_access($entity_type, $entity_id, 'unpublish own content', $account) && $account->uid == $node->uid)
