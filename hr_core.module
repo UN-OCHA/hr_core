@@ -103,9 +103,6 @@ function hr_core_field_extra_fields() {
       'description' => t('Share button'),
       'weight' => 0,
     ),
-  );
-
-  $extra['node']['hr_document']['display'] = array(
     'hr_core_read_more_button' => array(
       'label' => t('Read more button'),
       'description' => t('Read more button'),
