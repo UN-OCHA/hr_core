@@ -105,6 +105,14 @@ function hr_core_field_extra_fields() {
     ),
   );
 
+  $extra['node']['hr_document']['display'] = array(
+    'hr_core_read_more_button' => array(
+      'label' => t('Read more button'),
+      'description' => t('Read more button'),
+      'weight' => 0,
+    ),
+  );
+
   return $extra;
 }
 
@@ -121,6 +129,12 @@ function hr_core_node_view($node, $view_mode, $langcode) {
     '#title' => '',
     '#markup' => l('<i class="fa fa-share"></i> '.t('share'), 'http://www.addtoany.com/share_save', array('attributes' => array('class' => array( 'a2a_dd', 'btn', 'btn-default')), 'html' => TRUE)),
     '#suffix' => '<script type="text/javascript">a2a_config.linkname = "'.$node->title.'";a2a_config.linkurl = "'.$url.'";a2a.init("page");</script>',
+  );
+
+  $node->content['hr_core_read_more_button'] = array(
+    '#type' => 'item',
+    '#title' => '',
+    '#markup' => l('<i class="fa fa-eye"></i> '.t('read more'), 'node/'.$node->nid, array('attributes' => array('class' => array( 'btn', 'btn-default')), 'html' => TRUE)),
   );
 }
 
