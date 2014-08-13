@@ -120,12 +120,12 @@ function hr_core_field_extra_fields() {
  */
 function hr_core_node_view($node, $view_mode, $langcode) {
   $url = url('node/'.$node->nid, array('absolute' => TRUE));
-  drupal_add_js('https://static.addtoany.com/menu/page.js');
   $node->content['hr_core_share_button'] = array(
     '#type' => 'item',
     '#title' => '',
     '#markup' => l('<i class="fa fa-share"></i> '.t('share'), 'http://www.addtoany.com/share_save', array('attributes' => array('class' => array( 'a2a_dd', 'btn', 'btn-secondary', 'btn-sm')), 'html' => TRUE)),
     '#suffix' => '<script type="text/javascript">a2a_config.linkname = "'.$node->title.'";a2a_config.linkurl = "'.$url.'";a2a.init("page");</script>',
+    '#attached' => array('js' => array('https://static.addtoany.com/menu/page.js')),
   );
 
   $node->content['hr_core_read_more_button'] = array(
