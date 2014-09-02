@@ -35,7 +35,6 @@ function hr_core_entity_info_alter(&$entity_info) {
  * Hides fields if they are empty
  */
 function hr_core_form_alter(&$form, &$form_state, $form_id) {
-  global $language;
   foreach ($form as $id => &$item) {
     if (is_array($item) && isset($item['#type']) && $item['#type'] == 'container') {
       switch($item['#type']) {
@@ -55,10 +54,6 @@ function hr_core_form_alter(&$form, &$form_state, $form_id) {
           break;
       }
     }
-  }
-
-  if ($form_id == 'views_exposed_form') {
-    $form["#action"] = $language->prefix."/".$form["#action"];
   }
 }
 
@@ -245,6 +240,7 @@ function hr_core_form_node_form_alter(&$form, &$form_state) {
     if (!isset($node->nid)) {
       $form['actions']['submit']['#value'] = t('Publish');
       $form['actions']['draft'] = _hr_core_draft_button('Save As Draft');
+      debug($form['actions']);
     }
   }
   else {
