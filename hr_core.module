@@ -58,7 +58,7 @@ function hr_core_form_alter(&$form, &$form_state, $form_id) {
   }
 
   if ($form_id == 'views_exposed_form') {
-    $form["q"]["#value"] = $language->prefix."/".$form["q"]["#value"];
+    $form["#action"] = $language->prefix."/".$form["#action"];
   }
 }
 
