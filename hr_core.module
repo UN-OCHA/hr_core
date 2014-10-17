@@ -9,6 +9,19 @@ define('HR_CORE_OG_AUDIENCE_FIELD', 'hr_core_gid');
 include_once 'hr_core.features.inc';
 
 /**
+ * Implements hook_init()
+ * Redirects https requests of anonymous users to HTTP to use Varnish
+ */
+function hr_core_init() {
+  global $base_url;
+  $current = parse_url($base_url);
+  if ($current['scheme'] == 'https' && user_is_anonymous()) {
+    // Redirect to http
+    drupal_goto(current_path(), array('https' => FALSE), 301);
+  }
+}
+
+/**
  * Implements hook_entity_info_alter()
  */
 function hr_core_entity_info_alter(&$entity_info) {
