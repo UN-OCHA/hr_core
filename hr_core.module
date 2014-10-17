@@ -240,15 +240,6 @@ function hr_core_form_node_form_alter(&$form, &$form_state) {
     if (!isset($node->nid)) {
       $form['actions']['submit']['#value'] = t('Publish');
       $form['actions']['draft'] = _hr_core_draft_button('Save As Draft');
-      $form['actions']['submit']['#prefix'] = '<div class="btn-group">';
-      $form['actions']['submit']['#suffix'] = '<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-    <span class="caret"></span>
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Publish and send to Reliefweb</a></li>
-  </ul>
-</div>';
     }
   }
   else {
