@@ -17,7 +17,7 @@ function hr_core_init() {
   $current = parse_url($base_url);
   if ($current['scheme'] == 'https' && user_is_anonymous()) {
     $path = current_path();
-    if (!in_array($path, array('user/login', 'user/register', 'user/password', 'user'))) {
+    if (substr($path, 0, 4) != 'user') {
       // Redirect to http
       drupal_goto(current_path(), array('https' => FALSE), 301);
     }
