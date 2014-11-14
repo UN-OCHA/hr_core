@@ -327,3 +327,17 @@ function hr_core_publishcontent_unpublish_access($node, $account) {
   }
 }
 
+/**
+ * Returns true if a menu item for a given path exists, false otherwise
+ */
+function hr_core_menu_link_exists($path, $menu_name) {
+  $links = db_select('menu_links', 'ml')
+    ->fields('ml')
+    ->condition('ml.menu_name', $menu_name)
+    ->condition('ml.link_path', $path)
+    ->orderBy('weight')
+    ->execute()
+    ->fetchAll();
+
+  return !empty($links);
+}
