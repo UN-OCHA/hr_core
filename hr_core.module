@@ -341,3 +341,20 @@ function hr_core_menu_link_exists($path, $menu_name) {
 
   return !empty($links);
 }
+
+/**
+ * Implements hook_languagefield_options_alter()
+ * Added Dari as a language. See https://atrium.humanitarianresponse.info/humanitarian_response/node/4367
+ */
+function hr_core_languagefield_options_alter(&$languages, $subsets, $langcode) {
+  if (!isset($languages['prs'])) {
+    $languages['prs'] = array(
+      'value' => 'prs',
+      'langcode' => 'prs',
+      'name' => 'Dari',
+      'native' => 'دری',
+      'name_native' => 'Dari (دری)',
+    );
+  }
+}
+
