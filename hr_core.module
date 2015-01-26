@@ -341,3 +341,15 @@ function hr_core_menu_link_exists($path, $menu_name) {
 
   return !empty($links);
 }
+
+/**
+ * Implements hook_addressfield_default_values_alter()
+ * Sets default country to the country of the space
+ * See https://atrium.humanitarianresponse.info/humanitarian_response/node/4329
+ */
+function hr_core_addressfield_default_values_alter(&$default_values, $context) {
+  if (empty($default_values['country'])) {
+    $default_values['country'] = variable_get('site_default_country', 'SW');
+  }
+}
+
