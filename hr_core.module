@@ -353,3 +353,11 @@ function hr_core_languagefield_options_alter(&$languages, $subsets, $langcode) {
   }
 }
 
+/**
+ * Implements hook_panels_new_pane_alter($pane)
+ * Set default panel style to hr_highlighted
+ */
+function hr_core_panels_new_pane_alter(&$pane) {
+  $pane->style['style'] = 'hr_highlighted';
+}
+
